@@ -1,39 +1,43 @@
 {
   "expo": {
-    "name": "poizonG",
+    "name": "Giper",
     "slug": "poizonG",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/images/icon.png",
+    "icon": "./assets/Group59.png",
+    "backgroundColor": "#fff",
     "scheme": "poizong",
     "userInterfaceStyle": "automatic",
     "newArchEnabled": true,
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "backgroundColor": "#fff",
+      "bundleIdentifier": "com.shukurhm.poizonG"
     },
     "android": {
-      "adaptiveIcon": {
-        "foregroundImage": "./assets/images/adaptive-icon.png",
-        "backgroundColor": "#ffffff"
-      },
-      "edgeToEdgeEnabled": true
+      "edgeToEdgeEnabled": true,
+      "package": "com.shukurhm.poizonG"
     },
     "web": {
       "bundler": "metro",
-      "output": "static",
-      "favicon": "./assets/images/favicon.png"
+      "output": "static"
     },
     "plugins": [
       "expo-router",
       [
         "expo-splash-screen",
         {
-          "image": "./assets/images/splash-icon.png",
-          "imageWidth": 200,
-          "resizeMode": "contain",
-          "backgroundColor": "#ffffff"
+          "backgroundColor": "#5600B3",
+          "image": "./assets/images/giper1.png",
+          "dark": {
+            "image": "./assets/images/giper1.png",
+            "backgroundColor": "#5600B3"
+          },
+          "imageWidth": 100
         }
-      ]
+      ],
+      "expo-font",
+      "expo-web-browser"
     ],
     "experiments": {
       "typedRoutes": true
