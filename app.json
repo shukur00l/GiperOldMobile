@@ -2,16 +2,16 @@
   "expo": {
     "name": "Giper",
     "slug": "poizonG",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "orientation": "portrait",
     "icon": "./assets/Group59.png",
-    "backgroundColor": "#fff",
+    "backgroundColor": "#ffffff",
     "scheme": "poizong",
     "userInterfaceStyle": "automatic",
     "newArchEnabled": true,
     "ios": {
       "supportsTablet": true,
-      "backgroundColor": "#fff",
+      "backgroundColor": "#ffffff",
       "bundleIdentifier": "com.shukurhm.poizonG"
     },
     "android": {
@@ -41,6 +41,16 @@
     ],
     "experiments": {
       "typedRoutes": true
+    },
+    "extra": {
+      "router": {},
+      "eas": {
+        "projectId": "a8d79097-4992-4c11-8364-eb91ef3a6a28"
+      }
+    },
+    "runtimeVersion": "1.0.0",
+    "updates": {
+      "url": "https://u.expo.dev/a8d79097-4992-4c11-8364-eb91ef3a6a28"
     }
   }
 }

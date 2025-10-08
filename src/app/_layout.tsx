@@ -5,11 +5,12 @@ import { useEffect } from 'react';
 import { useFonts } from 'expo-font';
 import '../../global.css'
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import React from 'react';
 const queryClient = new QueryClient();
 
 SplashScreen.setOptions({
-  duration: 1,
-  fade: true,
+    duration: 1000,
+  fade: false,
 });
 
 SplashScreen.preventAutoHideAsync();
