@@ -18,6 +18,9 @@
     "preview": {
       "distribution": "internal",
       "channel": "preview",
+       "android": {
+        "buildType": "apk"
+      },
       "env": {
         "EXPO_PUBLIC_API_URL1": "https://gipertm.com/api/v1/",
         "EXPO_PUBLIC_API_URL2": "https://gipertm.com/api/v2/",
