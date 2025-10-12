@@ -4,17 +4,9 @@
     "appVersionSource": "remote"
   },
   "build": {
-    "development": {
+      "development": {
       "developmentClient": true,
-       "autoIncrement": true,
-      "distribution": "internal",
-        "channel": "development",
-      "env": {
-        "EXPO_PUBLIC_API_URL1": "https://gipertm.com/api/v1/",
-        "EXPO_PUBLIC_API_URL2": "https://gipertm.com/api/v2/",
-        "EXPO_PUBLIC_API_URL3": "https://gipertm.com/api/v3/",
-        "EXPO_PUBLIC_API_URL4": "https://gipertm.com/api/v4/"
-      }
+      "distribution": "internal"
     },
     "preview": {
       "distribution": "internal",
