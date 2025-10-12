@@ -87,7 +87,7 @@ const MainScreen: React.FC = () => {
               const r = await fetch(`${process.env.EXPO_PUBLIC_API_URL2}products/group/banners/${cat.id}`);
               items = await r.json();
             } else {
-              const r = await fetch(`${process.env.EXPO_PUBLIC_API_URL2}products/group/short/${cat.id}?offset=0&max=4`);
+              const r = await fetch(`${process.env.EXPO_PUBLIC_API_URL2}products/group/short/${cat.id}?offset=0&max=5`);
               items = await r.json();
             }
 
@@ -134,7 +134,7 @@ const renderItem = ({ item }: { item: CategoryWithItems }) => {
         <View className="flex mb-10 h-auto justify-center items-center">
           <Text className="w-full text-left pl-5 font-bold text-[18px]">{item.description.name}</Text>
           <FlatList
-            numColumns={2}
+            horizontal={true}
             data={item.items as Product[]}
             keyExtractor={(p) => p.id.toString()}
            renderItem={({ item: product }: { item: Product }) => (
@@ -241,7 +241,4 @@ const renderItem = ({ item }: { item: CategoryWithItems }) => {
 };
 
 export default MainScreen;
-function fetchBasket() {
-  throw new Error("Function not implemented.");
-}
 

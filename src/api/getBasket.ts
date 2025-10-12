@@ -9,7 +9,7 @@ export const GetBasketApi = async () => {
     `mps-${await Application.getIosIdForVendorAsync()}`
     :
     `android2_phone${await Application.getAndroidId()}`
-    const response = await fetch(`${process.env.EXPO_PUBLIC_API_URL2}cart/${deviceId}`, {
+    const response = await fetch(`${process.env.EXPO_PUBLIC_API_URL2}cart/${deviceId}?lang=tk`, {
       method: 'GET',
     }).then((data) => data.json())
     return response

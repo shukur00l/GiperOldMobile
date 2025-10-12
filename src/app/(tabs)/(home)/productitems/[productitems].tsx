@@ -156,7 +156,7 @@ const parentCode =
          <ArrowLeft />
           </Pressable>
         {product.images && product.images.length > 0 ? (
-        <View className="pt-5 w-auto items-center relative border-b-[1px]">
+        <View className="pt-5 w-auto items-center relative">
             <FlatList
               data={carouselData}
               horizontal

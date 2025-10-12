@@ -3,10 +3,9 @@ import { View, Text, ScrollView, Image, TouchableOpacity, StyleSheet, ActivityIn
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useQuery, useQueryClient } from '@tanstack/react-query';
 import { router, useFocusEffect } from 'expo-router';
-import React,{ useCallback } from 'react';
-import create from "zustand";
+import React,{ use, useCallback, useState } from 'react';
 import { useDeliveryStore } from '@/src/store/useDeliveryStore';
-
+import { UpdateBasketItemApi } from '@/src/api/updatebasketitemscount';
 // =========================================================
 // 1. ИНТЕРФЕЙСЫ (Оставляем, как есть, но выносим отдельно)
 // =========================================================
@@ -126,6 +125,17 @@ export const useBasketQuery = () => {
 // =========================================================
 
 export default function BasketScreen() {
+  const [quantities, setQuantities] = useState<{ [key: number]: number }>({});
+
+const queryClient = useQueryClient();
+const handleQuantityChange = async (lineItemId: number, newQuantity: number,) => {
+  try {
+    await UpdateBasketItemApi(lineItemId, newQuantity,);
+    await queryClient.invalidateQueries({ queryKey: ["basket"] });
+  } catch (error) {
+    console.error("Ошибка обновления корзины:", error);
+  }
+};
   // Заменяем useState/useEffect на useQuery
   const { 
     data: basket, 
@@ -215,6 +225,8 @@ export default function BasketScreen() {
     router.push("/chekout");
   };
 
+
+
   
 
   // --- Основной рендеринг ---
@@ -222,7 +234,7 @@ export default function BasketScreen() {
     <SafeAreaView edges={['bottom']} className="flex-1 bg-gray-100">
       <ScrollView className="flex-1" refreshControl={refreshControl}>
         {basket.merchantItems.map((merchantItem, index) => (
-          <View key={index} className="bg-white m-2 p-4 rounded-lg shadow-md">
+          <View key={index} className="bg-white m-2 p-4 rounded-lg ">
             
             {/* Блок магазина */}
             <View className="flex-row items-center mb-3">
@@ -235,45 +247,59 @@ export default function BasketScreen() {
             </View>
            
             {/* Товары */}
-            {merchantItem.groupedLineItems.map((group, groupIndex) => (
-              <View key={groupIndex}>
-                {group.lineItems.map((item) => (
-                  <View key={item.id} className="flex-row my-2 border-t border-gray-100 pt-2">
-                    <Image
-                      // 🔥 Убедитесь, что item.product.image.imageUrl использует HTTPS
-                      source={{ uri: item.product.image.imageUrl }}
-                      style={styles.productImage} // Используем фиксированные стили
-                    />
-                    <View className="flex-1 ml-4 justify-center">
-                      <Text className="font-semibold">{item.product.description.name}</Text>
-                      <Text className="text-gray-600">Количество: {item.quantity}</Text>
-                      <Text className="font-bold mt-1 text-base">{item.itemPrice}</Text>
-                    </View>
+           {merchantItem.groupedLineItems.map((group, groupIndex) => (
+  <View key={groupIndex}>
+    {group.lineItems.map((item) => {
+      const quantity = item.quantity;
 
-                    <View className='h-full gap-2 bg-gray-200 w-5 items-center'>
-                      <Pressable>
-                        <Text>+</Text>
-                        </Pressable>
-                      <Text>1</Text>
-                      <Pressable><Text>+</Text></Pressable>
-                    </View>
-                    
-                  </View>
-                ))}
-              </View>
-            ))}
+      return (
+        <View key={item.id} className="flex-row my-2 border-t border-gray-100 pt-2">
+          <Image
+            source={{ uri: item.product.image.imageUrl }}
+            style={styles.productImage}
+          />
+          <View className="flex-1 ml-4 justify-center">
+            <Text className="font-semibold">{item.product.description.name}</Text>
+            <Text className="text-gray-600">Количество: {quantity}</Text>
+            <Text className="font-bold mt-1 text-base">{item.itemPrice}</Text>
+          </View>
+
+          {/* Контрол количества */}
+          <View className="h-full gap-2 bg-gray-200 w-12 items-center">
+            <Pressable
+              onPress={() => handleQuantityChange(item.availability.id, quantity + 1)}
+            >
+              <Text className="text-[#5600B3] text-2xl">+</Text>
+            </Pressable>
+
+            <Text className="w-full text-center font-bold">{quantity}</Text>
+
+            <Pressable
+              onPress={() =>{
+                handleQuantityChange(item.availability.id, Math.max(1, quantity - 1))
+                }
+              }
+            >
+              <Text className="text-[#5600B3] font-bold text-2xl">-</Text>
+            </Pressable>
+          </View>
+        </View>
+      );
+    })}
+  </View>
+))}
           </View>
         ))}
       </ScrollView>
       
       {/* Блок итогов */}
-      <View className='bg-yellow-500'>
-        
+     
           {basket.shippingTypes.map((item) => (
-            <Text className='text-xs' key={item.text}>{item.desc}</Text>
+             <View className='bg-yellow-500 px-5' key={item.text}> 
+            <Text className='text-xs' >Supermarketden sargyt mukdary 200 manatdan geçen ýagdaýynda, dükanlarymyzda eltip bermek hyzmaty MUGT</Text>
+             </View>
           ))}
-
-      </View>
+     
       <View className="p-4 bg-white border-t border-gray-200 shadow-lg">
         <View className="flex-row justify-between mb-2">
           <Text className="text-xs text-gray-700">Сумма</Text>

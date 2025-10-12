@@ -1,4 +1,5 @@
 import { SearchApi } from "@/src/api/search";
+import { WishListIcon } from "@/src/utils/svg";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { router, Stack } from 'expo-router';
 import { CircleX, Search } from 'lucide-react-native';
@@ -131,16 +132,16 @@ const queryClient = new QueryClient();
       <Stack.Screen name="index" 
           options={{ 
           title: '',
+          headerShown: true,
           headerRight : () => <Pressable className='w-[40px] h-[40px] rounded-full items-center justify-center'
-           onPress={() => router.push('/(tabs)/(zfavourite)')}
+           onPress={() => router.push('/favorite')}
            >
-           <Image source={require('../../../../assets/images/Union.png')} /></Pressable>,
+           <WishListIcon /></Pressable>,
 
           headerLeft: () => <Image source={require('../../../../assets/images/Layer2.png')} />,
 
              headerTitle: () => (
              <>
-      
       <Pressable
         onPress={() => setModalVisible(true)}
         className="flex-row items-center border-[1px] border-[#BABDED] rounded-md px-3 ml-5 w-[300px] h-10"

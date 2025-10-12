@@ -219,7 +219,7 @@ const Profile = () => {
       </View> */}
 
       {/* Список действий */}
-      <View className="px-5 pt-10">
+      {/* <View className="px-5 pt-10">
         {actions.map((item, index) => (
           <View key={index} className="w-full border-b-[1px]">
             
@@ -243,7 +243,7 @@ const Profile = () => {
             ))}
           </View>
         ))}
-      </View>
+      </View> */}
     </View>
   );
 };

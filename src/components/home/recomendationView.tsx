@@ -3,17 +3,21 @@ import { router } from "expo-router";
 import { ShoppingCart } from "lucide-react-native";
 import React, { useEffect, useState } from "react";
 import { ActivityIndicator, FlatList, Image, Pressable, Text, View } from "react-native";
+import FavoriteButton from "../FavoriteButton";
+import { Product } from "./cardspisok";
 
-type Product = {
-  id: number;
-  name: string;
-  imageUrl: string;
-  defaultAvailability: {
-    price: string;
-    specialPrice?: string | null;
-    id: number;
-  };
-};
+// type Product = {
+//   id: number;
+//   name: string;
+//   imageUrl: string;
+//   newProduct : boolean;
+//   defaultAvailability: {
+//     price: string;
+//     specialPrice?: string | null;
+//     id: number;
+//     discountPercent: string
+//   };
+// };
 
 type RecommendationViewProps = {
   productId: number;
@@ -70,36 +74,64 @@ export default function RecommendationView({
       <Text className="text-lg font-bold mb-3 mx-2">Rekomendasiýa</Text>
     <View className="flex-row flex-wrap justify-between px-2">
         {rekomondaishen.map((item) => (
-          <View key={item.id}  className="rounded-xl p-3 w-[48%] shadow mb-4" >
+          <View key={item.id}  className="rounded-xl p-3 w-[48%] mb-4" >
             
-            <Pressable
-                key={item.id}
-                className=""
-                onPress={() => router.push(`/productitems/${item.id}`)}
-            >
+           <Pressable  className=" w-[165px] h-[195px] ml-5 rounded-[5px] m-4"
+              onPress={() => router.push(`/(tabs)/(home)/productitems/${item.id}`)}
+              >
+      
                 <Image
-                    source={{
-                        uri:
-                            item.imageUrl ||
-                            "https://via.placeholder.com/100x100?text=No+Image",
-                    }}
-                    className="w-full h-36 rounded-lg"
-                    resizeMode="cover"
+                  source={{ uri: item.imageUrl }}
+                  className="w-[165px] h-[128px] rounded-[5px]"
                 />
-                <Text
-                    className="text-xs text-center mt-2"
-                    numberOfLines={2}
-                    ellipsizeMode="tail"
-                >
-                    {item.name}
-                </Text>
 
-                {item.defaultAvailability?.price && (
-                    <Text className="text-center text-sm font-semibold mt-1">
-                        {item.defaultAvailability.price} TMT
-                    </Text>
+                  {item.newProduct && (
+                    <View className="absolute top-0 left-0 bg-green-500   px-1 rounded-rl-[5px]">
+                      <Text className="text-white text-[10px] font-bold">Täze</Text>
+                    </View>
+                  )}
+
+                   <FavoriteButton product={item} />
+
+          <Pressable className='absolute bottom-16 right-0 bg-[#5600B3] w-8 h-8 rounded-[5px] items-center justify-center outline-8 outline-white'
+          onPress={() => {
+           AddBasket(item.defaultAvailability.id)
+          }}
+          >
+        <ShoppingCart size={20} color='white' />
+      </Pressable>
+
+                <View className="flex flex-row mt-5">
+
+                   {item.defaultAvailability.specialPrice && (
+                    <View className="flex flex-row items-end">
+                  <Text className="text-[14px] text-[#FF0000] font-bold ">
+                    {item.defaultAvailability.specialPrice}
+                  </Text>
+                  <Text className="ml-2 text-[10px] text-[#A8A8A8] font-bold line-through ">
+                    {item.defaultAvailability.price}
+                  </Text>
+                  <Text className=" text-[10px] text-[#FF8C00] font-bold">
+                    -{item.defaultAvailability.discountPercent}%
+                  </Text>
+                  </View>
                 )}
-            </Pressable>
+
+
+                {!item.defaultAvailability.specialPrice && (
+                  <Text className="text-[14px] text-[#5600B3] font-bold ">
+                    {item.defaultAvailability.price}
+                  </Text>
+                )}
+               
+
+
+                </View>
+               
+                 <Text numberOfLines={1} className="text-[14px] mt-[5px] h-10 font-bold">
+                  {item.name}
+                </Text>
+              </Pressable>
                {/* <Pressable className='absolute bottom-16 right-0 bg-[#5600B3] w-8 h-8 rounded-[5px] items-center justify-center outline-8 outline-white'
           onPress={() => {
            AddBasket(item.defaultAvailability.id)

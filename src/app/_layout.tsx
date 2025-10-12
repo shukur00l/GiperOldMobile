@@ -28,6 +28,7 @@ export default function Layout() {
   if (!loaded) {
     return null;
   }
+  
 
    return (
      <QueryClientProvider client={queryClient}>
@@ -35,6 +36,8 @@ export default function Layout() {
        <Stack>
       <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
       <Stack.Screen name="login" options={{ headerShown: false }} />
+      <Stack.Screen name="favorite" options={{ headerShown: true, title: 'Favorites', headerBackButtonDisplayMode: 'minimal', headerBackTitle: 'Yza' }} />
+      <Stack.Screen name="+not-found" options={{ headerShown: true, title: 'Profile', headerBackButtonDisplayMode: 'minimal', headerBackTitle: 'Yza' }} />
     </Stack>
     </SafeAreaProvider>
        </QueryClientProvider>

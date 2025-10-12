@@ -4,7 +4,7 @@
     "slug": "poizonG",
     "version": "1.0.1",
     "orientation": "portrait",
-    "icon": "./assets/Group59.png",
+    "icon": "./assets/adaptivebackgraund.png",
     "backgroundColor": "#ffffff",
     "scheme": "poizong",
     "userInterfaceStyle": "automatic",

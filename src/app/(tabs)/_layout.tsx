@@ -1,6 +1,6 @@
+import { TabBasketActive, TabBasketPassive, TabCategoryActive, TabCategoryPassive, TabHomeActive, TabHomePassive, TabProfileActive, TabProfilePassive } from '@/src/utils/svg';
 import { Tabs } from 'expo-router';
-import { ClipboardList, Heart, House, ShoppingCart, User } from 'lucide-react-native';
-import { Image } from "react-native";
+import React from 'react';
 
 export default function TabLayout() {
 
@@ -20,7 +20,7 @@ export default function TabLayout() {
       <Tabs.Screen name="(home)"
       options={{
           title: '',
-          tabBarIcon: ({ focused }) => focused ?  <Image source={require('../../../assets/images/focusedHome.png')} /> : <Image source={require('../../../assets/images/home.png')} /> ,
+          tabBarIcon: ({ focused }) => focused ?  <TabHomeActive/> : <TabHomePassive/> ,
           headerShown: false,
         
         }}
@@ -30,7 +30,7 @@ export default function TabLayout() {
           <Tabs.Screen name="(katalog)"  
        options={{
           title: '',
-          tabBarIcon: ({ focused }) => focused ?  <Image source={require('../../../assets/images/focusedCategory.png')} /> : <Image source={require('../../../assets/images/Category.png')} /> ,     
+          tabBarIcon: ({ focused }) => focused ?  <TabCategoryActive/> : <TabCategoryPassive/> ,     
           headerTransparent: true,
           
          
@@ -39,21 +39,15 @@ export default function TabLayout() {
           <Tabs.Screen name="(zbasket)"  
        options={{
           title: '',
-          tabBarIcon: ({ focused }) => focused ?  <Image source={require('../../../assets/images/basketdark.png')} style={{width: 24, height: 24}}/> : <Image source={require('../../../assets/images/basketlight.png')} style={{width: 24, height: 24}} />,
+          tabBarIcon: ({ focused }) => focused ?  <TabBasketActive/> : <TabBasketPassive/>,
           headerShown: false,
         }}/>
     
-         <Tabs.Screen name="(zfavourite)"  
-       options={{
-          title: '',
-          tabBarIcon: ({ color }) => <Heart    size={28}  color={color}/>,
-          headerShown: false,
-        }}/>
 
           <Tabs.Screen name="(profile)"  
        options={{
           title: '',
-          tabBarIcon: ({ focused }) => focused ?  <Image source={require('../../../assets/images/focusedProfile.png')} style={{width: 24, height: 24}}/> : <Image source={require('../../../assets/images/profile.png')} style={{width: 24, height: 24}} /> ,
+          tabBarIcon: ({ focused }) => focused ?  <TabProfileActive/> : <TabProfilePassive/> ,
           headerShown: false,
         }}/>
     </Tabs>
