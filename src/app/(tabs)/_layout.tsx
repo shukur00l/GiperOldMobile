@@ -10,11 +10,10 @@ export default function TabLayout() {
      backBehavior="initialRoute"
      initialRouteName="(home)"
      screenOptions={{
-      tabBarActiveTintColor: '#5600B3',
-      tabBarInactiveTintColor: '#BABDED',
       tabBarStyle: {
         backgroundColor: '#FBF8FF',
       },
+      
      }}
      >
       <Tabs.Screen name="(home)"
@@ -47,7 +46,7 @@ export default function TabLayout() {
           <Tabs.Screen name="(profile)"  
        options={{
           title: '',
-          tabBarIcon: ({ focused }) => focused ?  <TabProfileActive/> : <TabProfilePassive/> ,
+          tabBarIcon: ({ focused, size }) => focused ?  <TabProfileActive/> : <TabProfilePassive className='pt-5'/> ,
           headerShown: false,
         }}/>
     </Tabs>

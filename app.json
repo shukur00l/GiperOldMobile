@@ -4,8 +4,8 @@
     "slug": "poizonG",
     "version": "1.0.1",
     "orientation": "portrait",
-    "icon": "./assets/adaptiveG.png",
-    "backgroundImage": "./assets/adaptivebackgraund.png",
+    "icon": "./assets/Group59.png",
+    "backgroundColor": "#5600B3",
     "scheme": "poizong",
     "userInterfaceStyle": "automatic",
     "newArchEnabled": true,
@@ -16,7 +16,11 @@
     },
     "android": {
       "edgeToEdgeEnabled": true,
-      "package": "com.shukurhm.poizonG"
+      "package": "com.shukurhm.poizonG",
+       "adaptiveIcon": {
+        "foregroundImage": "./assets/Group59.png", 
+        "backgroundColor": "#5600B3" 
+      }
     },
     "web": {
       "bundler": "metro",

@@ -4,7 +4,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { router, Stack } from 'expo-router';
 import { CircleX, Search } from 'lucide-react-native';
 import React, { useEffect, useRef, useState } from "react";
-import { ActivityIndicator, FlatList, Image, Modal, Pressable, Text, TextInput, View } from "react-native";
+import { ActivityIndicator, FlatList, Image, Modal, Pressable, Text, TextInput, TouchableOpacity, View } from "react-native";
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 type Product = {
@@ -137,20 +137,18 @@ const queryClient = new QueryClient();
            onPress={() => router.push('/favorite')}
            >
            <WishListIcon /></Pressable>,
-
           headerLeft: () => <Image source={require('../../../../assets/images/Layer2.png')} />,
-
              headerTitle: () => (
-             <>
-      <Pressable
+             <View className="w-full items-center justify-center px-5">
+      <TouchableOpacity
         onPress={() => setModalVisible(true)}
-        className="flex-row items-center border-[1px] border-[#BABDED] rounded-md px-3 ml-5 w-[300px] h-10"
+        className="flex-row items-center border-[1px] border-[#BABDED] rounded-md px-3  w-full h-10"
       >
         <Search color="#BABDED" />
         <Text style={{ marginLeft: 8, color: "#BABDED", fontSize: 12 }}>
           Gözle
         </Text>
-      </Pressable>
+      </TouchableOpacity>
 
       <Modal
         visible={modalVisible}
@@ -203,7 +201,7 @@ const queryClient = new QueryClient();
         </View>
         </SafeAreaView>
       </Modal>
-    </>
+    </View>
           ),
           }}/>
       <Stack.Screen name="categoryitems/[categoryid]" options={{
